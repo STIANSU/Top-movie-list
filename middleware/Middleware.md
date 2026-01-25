@@ -1,0 +1,1 @@
+Sjekker om tittel finnes i forespørsel. hvis bruker lagrer navn uten tittel får de feilmelding 400. dette er for å passe på at de ikke er tomme film titler.
