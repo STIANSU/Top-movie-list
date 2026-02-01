@@ -6,6 +6,20 @@
     <title>Film App</title>
 </head>
 <body>
+    <h2>Registrer ny bruker</h2>
+<form id="userForm">
+    <input type="email" id="email" placeholder="Epost" required>
+    <input type="password" id="password" placeholder="Passord" required>
+    
+    <label>
+        <input type="checkbox" required> Jeg har lest og godtar
+        <a href="/TOS.md" target="_blank">brukervilkår.</a>
+    </label>
+    
+    <button type="submit">Opprett bruker</button>
+</form>
+
+<button id="deleteBtn">Slett min bruker (Test)</button>
     <script src="script.js"></script>
 </body>
 </html>
