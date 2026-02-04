@@ -1,6 +1,8 @@
-Brukervilkår.
+Brukervilkår (Terms of Service)
 
-Ved å opprette bruker og bruke appen godtar du følgende.
-Du eier din egen data, men vi får lov til å vise den.
-Du er selv ansvarlig for å holde passordet ditt hemmelig.
-Du må bruke din egen E-postadresse, ikke andres.
+Ved å ta i bruk FilmApp godtar du følgende vilkår:
+
+Eierskap: Du eier innholdet du produserer (anmeldelser/lister), men gir appen rett til å lagre og vise dette for deg.
+Sikkerhet: Du er selv ansvarlig for å beskytte ditt passord.
+Identitet: Du må benytte en e-postadresse du selv disponerer.
+Oppførsel: Misbruk av tjenesten eller forsøk på å skade systemet vil føre til utestengelse.

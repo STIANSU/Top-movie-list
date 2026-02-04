@@ -1,14 +1,15 @@
-Personvern for FilmApp
+Personvernerklæring
 
-Hvilken informasjon blir samlet inn?
-Jeg lagrer kun epost og passord for å kunne la deg logge inn. Dataen din kan du når som helst slette.
 
-Hvordan brukes informasjonen og sikkerhet?
-E-postadresse og passord (kryptert) blir tatt i bruk for å lage bruker.
-Det vil kun være du som har tilgang til ditt eget passord (kryptert).
-Bruker vil kunne lagre filmer, rangering og kommentarer som du skriver.
-Appen lagrer noe lokalt så denne skal kunne bruker offline.
+Datainnsamling
+Jeg samler kun inn:
+E-postadresse og passord for autentisering.
+Brukerens egne filmlister, rangeringer og kommentarer.
 
-Dine rettigheter.
-Se filmer og data jeg har lagret om deg.
-Slette konto og all tilhørende historikk til deg.
+Sikkerhet og Behandling
+Hashing: Passord lagres aldri i klartekst. Jeg benytter SHA-256 hashing via en sikker middleware før lagring.
+Lagring: Data lagres i serverens minne og lokalt i nettleseren (LocalStorage) for offline-tilgang.
+Tredjepart: Jeg deler ingen data med eksterne aktører.
+
+Dine rettigheter
+Du har rett til innsyn i dine data. Du kan når som helst slette kontoen din og all tilhørende historikk permanent ved å benytte slette-funksjonen i appen.
