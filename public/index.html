@@ -1,25 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Film App</title>
+    <title>Min Filmapp</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script type="module" src="app.mjs"></script>
 </head>
 <body>
-    <h2>Registrer ny bruker</h2>
-<form id="userForm">
-    <input type="email" id="email" placeholder="Epost" required>
-    <input type="password" id="password" placeholder="Passord" required>
-    
-    <label>
-        <input type="checkbox" required> Jeg har lest og godtar
-        <a href="/TOS.md" target="_blank">brukervilkår.</a>
-    </label>
-    
-    <button type="submit">Opprett bruker</button>
-</form>
 
-<button id="deleteBtn">Slett min bruker</button>
-    <script src="script.js"></script>
+    <h1>Velkommen til Filmappen</h1>
+
+    <user-form></user-form>
+
 </body>
 </html>
