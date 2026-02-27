@@ -1,15 +1,15 @@
 import { createUser, deleteUser } from "./api.mjs";
 
-export class UserForm extends HTMLElement {
+export class userform extends HTMLElement {
     constructor() {
         super();
     }
 
 async connectedCallback() {
         try {
-            const response = await fetch("./UserForm.html");
+            const response = await fetch("./userform.html");
             if (!response.ok) {
-                throw new Error(`Fant ikke UserForm.html (Status: ${response.status})`);
+                throw new Error(`Fant ikke userform.html (Status: ${response.status})`);
             }
             const html = await response.text();
             this.innerHTML = html;
@@ -54,4 +54,4 @@ async connectedCallback() {
     }
 }
 
-customElements.define("user-form", UserForm);
+customElements.define("user-form", userform);
