@@ -16,7 +16,6 @@ export class UserForm extends HTMLElement {
     }
 
     setupEventListeners() {
-        // Registrering
         this.querySelector("#registerForm").addEventListener("submit", async (e) => {
             e.preventDefault();
             const form = e.target;
@@ -26,12 +25,10 @@ export class UserForm extends HTMLElement {
             };
 
             const response = await createUser(user);
-            
             if (response.user && response.user.id) {
-                
                 this.showStatus(`Suksess! Bruker opprettet.`);
-                
-                // Test for sletting av ID, fjerner før siste innlevering ------------------------------
+
+                // Test for sletting av ID, fjerner før aller siste innlevering ------------------------------
                 this.querySelector("#deleteId").value = response.user.id;
             } else {
                 this.showStatus(response.message || response.error);

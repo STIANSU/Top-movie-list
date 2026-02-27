@@ -1,23 +1,42 @@
-import user from "../do/user.mjs";
-import { generateID } from "../do/user.mjs";
+import pool from "./db.mjs";
 
-const temporaryUserStore = [];
-
-export function createNewUser(email, passwordToken) {
-    let newUser = user();
-    newUser.id = generateID();
-    newUser.email = email;
-    newUser.token = passwordToken;
+export async function createNewUser(email, passwordToken) {
+    const id = Math.floor(Math.random() * 1000000); 
     
-    temporaryUserStore.push(newUser);
-    return newUser;
+    const username = email; 
+    const password = passwordToken; 
+
+    const sql = "INSERT INTO users (id, username, password, email) VALUES ($1, $2, $3, $4) RETURNING *";
+    const values = [id, username, password, email];
+
+    try {
+        const result = await pool.query(sql, values);
+        console.log("Bruker lagret i database!");
+        return result.rows[0]; 
+    } catch (err) {
+        console.error("Feil ved lagring i database:", err);
+        throw err;
+    }
 }
 
-export function removeUser(id) {
-    const index = temporaryUserStore.findIndex(u => u.id === id);
-    if (index !== -1) {
-        temporaryUserStore.splice(index, 1);
-        return true; 
+export async function removeUser(id) {
+    const sql = "DELETE FROM users WHERE id = $1 RETURNING *";
+    try {
+        const result = await pool.query(sql, [id]);
+        return result.rowCount > 0; 
+    } catch (err) {
+        console.error("Feil ved sletting i database:", err);
+        throw err;
     }
-    return false;
+}
+
+export async function getAllUsers() {
+    const sql = "SELECT * FROM users";
+    try {
+        const result = await pool.query(sql);
+        return result.rows;
+    } catch (err) {
+        console.error("Feil ved henting av brukere:", err);
+        throw err;
+    }
 }
