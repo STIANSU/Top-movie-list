@@ -4,7 +4,7 @@ import contentRouter from "./routes/contentAPI.mjs";
 import userRouter from "./routes/userAPI.mjs";
 import securityAudit from "./middleware/security.mjs";
 
-const port = 8080;
+const port = process.env.port || 8080;
 const app = express();
 
 
