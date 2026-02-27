@@ -2,9 +2,9 @@ import pg from "pg";
 import "dotenv/config";
 
 
-const pool = new pg.Pool({
+const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: { 
+    ssl: {
         rejectUnauthorized: false 
     }
 });
