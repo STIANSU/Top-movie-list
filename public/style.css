@@ -1,0 +1,28 @@
+/* =========================================
+   Styling for TOS
+   ========================================= */
+
+.legal-page {
+    font-family: sans-serif;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    color: #333;
+}
+
+.legal-page h1 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.legal-page h2 {
+    color: #444;
+    margin-top: 25px;
+}
+
+.legal-footer {
+    margin-top: 50px;
+    font-size: 0.9em;
+    color: #777;
+}
