@@ -1,10 +1,21 @@
 import pg from "pg";
 import "dotenv/config";
 
+const { Pool } = pg;
 
-const pool = new pg.Pool({
+const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
-    ssl: true
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
+
+pool.connect((err, client, release) => {
+    if (err) {
+        return console.error('Feil ved første tilkobling til DB:', err.stack);
+    }
+    console.log('Database-tilkobling etablert!');
+    release();
 });
 
 export default pool;
