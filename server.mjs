@@ -4,7 +4,7 @@ import contentRouter from "./routes/contentAPI.mjs";
 import userRouter from "./routes/userAPI.mjs";
 import securityAudit from "./middleware/security.mjs";
 
-const port = process.env.port || 8080;
+const PORT = process.env.PORT || 8080;
 const app = express();
 
 
@@ -16,6 +16,6 @@ app.use("/api/movies", movieRoutes);
 app.use("/user", securityAudit, userRouter);
 app.use("/content", contentRouter);
 
-app.listen(port, "127.0.0.1", () => {
-  console.log(`Server is listening on port:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is listening on port:${PORT}`);
 });
