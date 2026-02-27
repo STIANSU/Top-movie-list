@@ -5,13 +5,18 @@ export class UserForm extends HTMLElement {
         super();
     }
 
-    async connectedCallback() {
+async connectedCallback() {
         try {
-            const response = await fetch('UserForm.html');
-            this.innerHTML = await response.text();
+            const response = await fetch("./UserForm.html");
+            if (!response.ok) {
+                throw new Error(`Fant ikke UserForm.html (Status: ${response.status})`);
+            }
+            const html = await response.text();
+            this.innerHTML = html;
             this.setupEventListeners();
-        } catch (error) {
-            console.error("Feil ved lasting av mal:", error);
+        } catch (err) {
+            this.innerHTML = `<p style="color:red">Feil ved lasting av skjema: ${err.message}</p>`;
+            console.error(err);
         }
     }
 
