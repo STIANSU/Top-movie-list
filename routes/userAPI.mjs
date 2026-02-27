@@ -1,9 +1,7 @@
 import express from "express";
-import user from "../do/user.mjs";
-import { generateID } from "../do/user.mjs";
+import { createNewUser, removeUser } from "../controllers/userController.mjs";
 
 const userRouter = express.Router();
-const temporaryUserStore = [];
 
 userRouter.post("/", (req, res) => {
     const { email } = req.body;
@@ -13,12 +11,8 @@ userRouter.post("/", (req, res) => {
         return res.status(400).json({ error: "Mangler epost eller passord" });
     }
 
-    let newUser = user();
-    newUser.id = generateID();
-    newUser.email = email;
-    newUser.token = password;
-
-    temporaryUserStore.push(newUser);
+    
+    const newUser = createNewUser(email, password);
 
     res.status(201).json({ 
         message: "Bruker opprettet", 
@@ -28,10 +22,11 @@ userRouter.post("/", (req, res) => {
 
 userRouter.delete("/", (req, res) => {
     const { id } = req.body;
-    const index = temporaryUserStore.findIndex(u => u.id === id);
+    
+    
+    const wasDeleted = removeUser(id);
 
-    if (index !== -1) {
-        temporaryUserStore.splice(index, 1);
+    if (wasDeleted) {
         res.status(200).json({ message: "Bruker slettet" });
     } else {
         res.status(404).json({ error: "Bruker ikke funnet" });

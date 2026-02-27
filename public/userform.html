@@ -1,0 +1,24 @@
+<div class="form-container">
+    <h3>Registrer ny bruker</h3>
+    <form id="registerForm">
+        <input type="email" id="email" placeholder="E-post" required>
+        <input type="password" id="password" placeholder="Passord" required>
+        
+        <label style="display:block; margin: 10px 0;">
+            <input type="checkbox" id="tos" required> Jeg har lest og godtar
+            <a href="/TOS.html" target="_blank">brukervilkår.</a>
+        </label>    
+
+        <button type="submit">Opprett bruker</button>
+    </form>
+    
+    <hr>
+    
+    <h3>Slett bruker</h3>
+    <form id="deleteForm">
+        <input type="text" id="deleteId" placeholder="Bruker ID">
+        <button type="submit">Slett</button>
+    </form>
+    
+    <div id="statusMessage"></div>
+</div>
