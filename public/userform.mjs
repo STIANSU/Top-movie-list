@@ -32,14 +32,8 @@ async connectedCallback() {
             const response = await createUser(user);
             if (response.user && response.user.id) {
                 this.showStatus(`Suksess! Bruker opprettet.`);
-
-                // Test for sletting av ID, fjerner før aller siste innlevering ------------------------------
-                this.querySelector("#deleteId").value = response.user.id;
-            } else {
-                this.showStatus(response.message || response.error);
             }
         });
-                //--------------------------------------------------------------------------------------
         
         this.querySelector("#deleteForm").addEventListener("submit", async (e) => {
             e.preventDefault();

@@ -1,4 +1,4 @@
-import pool from "./db.mjs";
+import pool from "./db.mjs"
 
 export async function createNewUser(email, passwordToken) {
     const id = Math.floor(Math.random() * 1000000); 

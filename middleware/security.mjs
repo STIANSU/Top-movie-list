@@ -5,7 +5,7 @@ function securityAudit(req, res, next) {
         if (req.body && req.body.password) {
             const psw = req.body.password;
             req.body.password = "";
-            const secret = process.env.SECRET || "VerySuperDuperSecret";
+            const secret = process.env.SECRET || "p5PaJJTnbmNPzlkhTJMptbfOVbPiXl5p";
             req.token = createSecurePassToken(psw, secret);
         }
     }
