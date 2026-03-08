@@ -1,4 +1,6 @@
-Film liste app.
+FilmToppen app.
+
+https://movie-listdb.onrender.com/
 
 En progressiv web-applikasjon for å holde oversikt over filmer du har sett eller planlegger å se.
 
