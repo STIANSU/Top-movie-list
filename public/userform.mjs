@@ -5,9 +5,9 @@ export class userform extends HTMLElement {
         super();
     }
 
-async connectedCallback() {
+    async connectedCallback() {
         try {
-            const response = await fetch("./userform.html");
+            const response = await fetch("/");
             if (!response.ok) {
                 throw new Error(`Fant ikke userform.html (Status: ${response.status})`);
             }
@@ -21,30 +21,66 @@ async connectedCallback() {
     }
 
     setupEventListeners() {
-        this.querySelector("#registerForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const user = {
-                email: form.querySelector("#email").value,
-                password: form.querySelector("#password").value
-            };
+        const regForm = this.querySelector("#registerForm");
+        const delForm = this.querySelector("#deleteForm");
+        const loginForm = this.querySelector("#loginForm");
 
-            const response = await createUser(user);
-            if (response.user && response.user.id) {
-                this.showStatus(`Suksess! Bruker opprettet.`);
-            }
-        });
+        if (regForm) {
+            regForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const user = {
+                    email: regForm.querySelector("#email").value,
+                    password: regForm.querySelector("#password").value
+                };
+                const response = await createUser(user);
+                if (response && response.user && response.user.id) {
+                    this.showStatus(`Suksess! Bruker opprettet.`);
+                } else {
+                    this.showStatus("Kunne ikke opprette bruker.");
+                }
+            });
+        }
         
-        this.querySelector("#deleteForm").addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const id = this.querySelector("#deleteId").value;
-            const response = await deleteUser(id);
-            this.showStatus(response.message || response.error);
-        });
+        if (delForm) {
+            delForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const id = delForm.querySelector("#deleteId").value;
+                const response = await deleteUser(id);
+                this.showStatus(response.message || response.error);
+            });
+        }
+
+        if (loginForm) {
+            loginForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const credentials = {
+                    email: loginForm.querySelector("#loginEmail").value,
+                    password: loginForm.querySelector("#loginPassword").value
+                };
+                try {
+                    const response = await fetch("/user/login", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(credentials)
+                    });
+
+                    const data = await response.json();
+                    if (response.ok) {
+                        localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+                        this.showStatus(`Velkommen tilbake, ${data.user.email}!`);
+                    } else {
+                        this.showStatus(data.error || "Feil ved innlogging");
+                    }
+                } catch (err) {
+                    this.showStatus("Kunne ikke koble til serveren.");
+                }
+            });
+        }
     }
 
     showStatus(msg) {
-        this.querySelector("#statusMessage").innerText = msg;
+        const statusEl = this.querySelector("#statusMessage");
+        if (statusEl) statusEl.innerText = msg;
     }
 }
 

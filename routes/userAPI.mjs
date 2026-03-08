@@ -48,4 +48,20 @@ userRouter.get("/all", async (req, res) => {
     }
 });
 
+
+userRouter.post("/login", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const user = await loginUser(email, password);
+
+        if (user) {
+            res.status(200).json({ message: "Innlogging vellykket", user: user });
+        } else {
+            res.status(401).json({ error: "Feil e-post eller passord" });
+        }
+    } catch (err) {
+        res.status(500).json({ error: "Serverfeil ved innlogging" });
+    }
+});
+
 export default userRouter;

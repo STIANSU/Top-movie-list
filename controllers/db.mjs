@@ -14,7 +14,6 @@ pool.connect((err, client, release) => {
     if (err) {
         return console.error('Feil ved første tilkobling til DB:', err.stack);
     }
-    console.log('Database-tilkobling etablert!');
     release();
 });
 

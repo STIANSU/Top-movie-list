@@ -1,20 +1,31 @@
 <div class="form-container">
-    <h3>Registrer ny bruker</h3>
+    <h2>Registrer ny bruker</h2>
     <form id="registerForm">
         <input type="email" id="email" placeholder="E-post" required>
         <input type="password" id="password" placeholder="Passord" required>
         
         <label style="display:block; margin: 10px 0;">
             <input type="checkbox" id="tos" required> Jeg har lest og godtar
-            <a href="/TOS.html" target="_blank">brukervilkår.</a>
+            <a href="/TOS.html" target="_blank">brukervilkår</a>
+            og 
+            <a href="/PRIVACY.html" target="_blank">personvernerklæring</a>
         </label>    
 
         <button type="submit">Opprett bruker</button>
     </form>
     
     <hr>
+
+    <h2>Logg inn</h2>
+    <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="E-post" required>
+        <input type="password" id="loginPassword" placeholder="Passord" required>
+        <button type="submit">Logg inn</button>
+    </form>
+        
+    <hr>
     
-    <h3>Slett bruker</h3>
+    <h2>Slett bruker</h2>
     <form id="deleteForm">
         <input type="text" id="deleteId" placeholder="Bruker ID">
         <button type="submit">Slett</button>
