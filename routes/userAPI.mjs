@@ -5,13 +5,11 @@ const userRouter = express.Router();
 
 
 userRouter.post("/", async (req, res) => {
-    const { email } = req.body;
-    const password = req.token; 
+    const { email, password } = req.body; 
 
     if (!email || !password) {
         return res.status(400).json({ error: "Mangler epost eller passord" });
     }
-
     try {
         const newUser = await createNewUser(email, password);
         res.status(201).json({ 
