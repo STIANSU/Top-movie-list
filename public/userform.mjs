@@ -7,7 +7,7 @@ export class userform extends HTMLElement {
 
     async connectedCallback() {
         try {
-            const response = await fetch("/");
+            const response = await fetch("userform.html");
             if (!response.ok) {
                 throw new Error(`Fant ikke userform.html (Status: ${response.status})`);
             }
