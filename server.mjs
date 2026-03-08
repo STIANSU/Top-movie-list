@@ -2,7 +2,6 @@ import express from "express";
 import movieRoutes from "./routes/movieRoutes.mjs";
 import contentRouter from "./routes/contentAPI.mjs";
 import userRouter from "./routes/userAPI.mjs";
-import securityAudit from "./middleware/security.mjs";
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -13,7 +12,7 @@ app.use(express.static("public"));
 
 
 app.use("/api/movies", movieRoutes);
-app.use("/user", securityAudit, userRouter);
+app.use("/user", userRouter);
 app.use("/content", contentRouter);
 
 app.listen(PORT, () => {
