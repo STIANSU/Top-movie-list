@@ -5,9 +5,11 @@ export async function createNewUser(email, passwordToken) {
     
     const username = email; 
     const password = passwordToken; 
+}
 
-    const sql = "INSERT INTO users (id, username, password, email) VALUES ($1, $2, $3, $4) RETURNING *";
-    const values = [id, username, password, email];
+export async function createNewUser(email, password) {
+    const sql = "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *";
+    const values = [email, password];
 
     try {
         const result = await pool.query(sql, values);
