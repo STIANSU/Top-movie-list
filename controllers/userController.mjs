@@ -1,9 +1,10 @@
 import pool from "./db.mjs";
 
 export async function createNewUser(email, password) {
-    const sql = "INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *";
-    const values = [email, password];
-
+    const id = Math.floor(Math.random() * 1000000); 
+    const username = email; 
+    const sql = "INSERT INTO users (id, username, password, email) VALUES ($1, $2, $3, $4) RETURNING *";
+    const values = [id, username, password, email];
     try {
         const result = await pool.query(sql, values);
         console.log("Bruker lagret i database!");
