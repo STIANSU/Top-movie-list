@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilmToppen - Mine filmer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+    <header>
+        <h1>Mine filmer 🎬</h1>
+        <p id="welcomeMessage">Laster inn...</p>
+        <button id="logoutBtn">Logg ut</button>
+    </header>
+
+    <main>
+        <section>
+            <h2>Legg til en ny film</h2>
+            <form id="movieForm">
+                <div class="input-group">
+                    <label for="movieTitle">Filmtittel</label>
+                    <input type="text" id="movieTitle" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="movieRating">Terningkast (1-10)</label>
+                    <input type="number" id="movieRating" min="1" max="10" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="movieComment">Kommentar</label>
+                    <textarea id="movieComment" rows="3" placeholder="Hva syntes du om filmen?"></textarea>
+                </div>
+                
+                <button type="submit">Lagre film</button>
+            </form>
+            <div id="movieStatus" aria-live="polite" style="margin-top: 10px; font-weight: bold;"></div>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Min filmliste</h2>
+            <button id="shareBtn">Del listen min 📤</button>
+            <ul id="moviesList" style="list-style-type: none; padding: 0;">
+                </ul>
+        </section>
+    </main>
+
+    <script type="module" src="movies.mjs"></script>
+</body>
+</html>

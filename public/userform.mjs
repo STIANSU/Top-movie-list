@@ -8,8 +8,14 @@ export class userform extends HTMLElement {
     async connectedCallback() {
         try {
             const response = await fetch("userform.html");
-            if (!response.ok) {
-                throw new Error(`Fant ikke userform.html (Status: ${response.status})`);
+            if (response.ok) {
+                localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+                this.showStatus(`Velkommen tilbake, ${data.user.email}! Laster inn filmene dine...`);                
+                setTimeout(() => {
+                window.location.href = "/movies.html"; 
+                }, 1500);
+            } else {
+                this.showStatus(data.error || "Feil ved innlogging");
             }
             const html = await response.text();
             this.innerHTML = html;
@@ -24,7 +30,6 @@ export class userform extends HTMLElement {
         const regForm = this.querySelector("#registerForm");
         const delForm = this.querySelector("#deleteForm");
         const loginForm = this.querySelector("#loginForm");
-
         if (regForm) {
             regForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
