@@ -34,11 +34,11 @@ async function fetchMovies() {
                     const movieId = e.target.getAttribute("data-id");
                     const oldComment = e.target.getAttribute("data-oldcomment");
                     const givenRating = prompt("Hvor mange stjerner gir du filmen (1-10)? ⭐");
+                    
                     if (!givenRating || givenRating < 1 || givenRating > 10) {
                         if (givenRating) alert("Du må skrive et tall mellom 1 og 10!");
                         return; 
                     }
-
 
                     let newComment = prompt(`Hva syntes du om filmen?\n\nLa boksen stå tom hvis du vil beholde det gamle notatet: "${oldComment}"`);
                     if (newComment === null || newComment.trim() === "") {

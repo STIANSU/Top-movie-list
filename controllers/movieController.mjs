@@ -6,14 +6,15 @@ export async function addMovie(userId, title, rating, comment, status) {
         VALUES ($1, $2, $3, $4, $5) 
         RETURNING *;
     `;
-    const movieRating = rating ? rating : null; 
-    const values = [userId, title, movieRating, comment, status];
     
+    const movieRating = (rating !== undefined && rating !== "") ? rating : null;
+    const movieComment = comment || ""; 
+    const values = [userId, title, movieRating, movieComment, status];
     try {
         const result = await pool.query(query, values);
         return result.rows[0];
     } catch (error) {
-        console.error("Feil ved lagring av film:", error);
+        console.error("Feil ved lagring av film i controller:", error);
         throw error;
     }
 }
