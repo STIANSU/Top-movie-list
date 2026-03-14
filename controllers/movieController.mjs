@@ -1,4 +1,4 @@
-import pool from "../db.mjs"; 
+import pool from "./db.mjs";
 
 
 export async function addMovie(userId, title, rating, comment) {
