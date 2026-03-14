@@ -1,6 +1,5 @@
 const CACHE_NAME = "filmtoppen-cache-v1";
 
-// Her lister vi opp alle filene fra public-mappen din som skal lagres offline
 const urlsToCache = [
   "/",
   "/index.html",

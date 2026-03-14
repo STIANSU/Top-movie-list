@@ -5,23 +5,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const user = JSON.parse(loggedInUserStr);
     document.getElementById("welcomeMessage").innerText = `Logget inn som: ${user.email}`;
 
-    const movieForm = document.getElementById("movieForm");
+    const watchlistForm = document.getElementById("watchlistForm");
+    const watchedForm = document.getElementById("watchedForm");
     const moviesList = document.getElementById("moviesList");
     const watchlistList = document.getElementById("watchlistList");
-    const movieStatusMsg = document.getElementById("movieStatus");
-
-    const statusSelect = document.getElementById("movieStatus");
-    const ratingGroup = document.getElementById("movieRating").parentElement;
-    
-    statusSelect.addEventListener("change", (e) => {
-        if (e.target.value === "watchlist") {
-            ratingGroup.style.display = "none";
-            document.getElementById("movieRating").required = false;
-        } else {
-            ratingGroup.style.display = "block";
-            document.getElementById("movieRating").required = true;
-        }
-    });
 
     fetchMovies();
 
@@ -30,15 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "/";
     });
 
-    movieForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        
-        const title = document.getElementById("movieTitle").value;
-        const status = document.getElementById("movieStatus").value;
-        const comment = document.getElementById("movieComment").value;
-        const rating = status === "watched" ? document.getElementById("movieRating").value : null;
 
+    async function saveMovie(title, rating, comment, status, statusMsgEl) {
         try {
+            statusMsgEl.innerText = "Lagrer...";
             const response = await fetch("/api/movies", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -46,16 +28,37 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-                movieStatusMsg.innerText = "Suksess! 🍿";
-                movieForm.reset();
-                ratingGroup.style.display = "block";
+                statusMsgEl.innerText = "Lagt til! 🍿";
+                setTimeout(() => statusMsgEl.innerText = "", 3000);
                 fetchMovies();
+                return true; 
             } else {
-                movieStatusMsg.innerText = "Kunne ikke lagre filmen.";
+                statusMsgEl.innerText = "Kunne ikke lagre filmen.";
+                return false;
             }
         } catch (error) {
-            movieStatusMsg.innerText = "Serverfeil.";
+            statusMsgEl.innerText = "Serverfeil.";
+            return false;
         }
+    }
+
+    watchlistForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const title = document.getElementById("watchTitle").value;
+        const comment = document.getElementById("watchComment").value;
+        const msgDiv = document.getElementById("watchStatusMsg");
+        const success = await saveMovie(title, null, comment, "watchlist", msgDiv);
+        if (success) watchlistForm.reset(); 
+    });
+
+    watchedForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const title = document.getElementById("seenTitle").value;
+        const rating = document.getElementById("seenRating").value;
+        const comment = document.getElementById("seenComment").value;
+        const msgDiv = document.getElementById("seenStatusMsg");
+        const success = await saveMovie(title, rating, comment, "watched", msgDiv);
+        if (success) watchedForm.reset(); 
     });
 
     async function fetchMovies() {
@@ -72,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (movie.status === "watchlist") {
                     li.innerHTML = `
                         <h3>${movie.title}</h3>
-                        <p><em>Notat: "${movie.comment || 'Ingen kommentar'}"</em></p>
+                        <p><em>"${movie.comment || 'Ingen kommentar'}"</em></p>
                         <button class="mark-seen-btn" data-id="${movie.id}" style="margin-top: 10px; background-color: #10b981;">✔️ Har sett denne nå!</button>
                     `;
                     watchlistList.appendChild(li);
@@ -85,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            
             document.querySelectorAll(".mark-seen-btn").forEach(btn => {
                 btn.addEventListener("click", async (e) => {
                     const movieId = e.target.getAttribute("data-id");
@@ -108,4 +110,14 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error(error);
         }
     }
+
+    document.getElementById("shareBtn").addEventListener("click", () => {
+        const shareText = `Sjekk ut filmlisten min på FilmToppen!`;
+        const shareUrl = window.location.href; 
+        if (navigator.share) {
+            navigator.share({ title: 'Min Filmliste', text: shareText, url: shareUrl }).catch(console.error);
+        } else {
+            window.location.href = `mailto:?subject=Min filmliste&body=${shareText} %0D%0A${shareUrl}`;
+        }
+    });
 });

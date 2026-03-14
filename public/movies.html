@@ -14,55 +14,39 @@
         <button id="logoutBtn">Logg ut</button>
     </header>
 
-    <main>
-        <section>
-            <h2>Legg til en ny film</h2>
-            <form id="movieForm">
-                
-                <div class="input-group">
-                    <label for="movieTitle">Filmtittel</label>
-                    <input type="text" id="movieTitle" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="movieStatus">Hvilken liste?</label>
-                    <select id="movieStatus" required>
-                        <option value="watched">Har sett den (Ferdig sett)</option>
-                        <option value="watchlist">Vil se den (Skal se)</option>
-                    </select>
-                </div>
-                
-                <div class="input-group" id="ratingGroup">
-                    <label for="movieRating">Antall stjerner (1-10)</label>
-                    <input type="number" id="movieRating" min="1" max="10" required>
-                </div>
-                
-                <div class="input-group">
-                    <label for="movieComment">Kommentar</label>
-                    <textarea id="movieComment" rows="3" placeholder="Hvorfor vil du se den, eller hva syntes du om den?"></textarea>
-                </div>
-                
-                <button type="submit">Lagre film</button>
-            </form>
-            <div id="movieStatusMsg" aria-live="polite" style="margin-top: 10px; font-weight: bold;"></div>
-        </section>
-
-        <hr>
-
-        <section>
+    <main class="split-layout">
+        
+        <section class="column">
             <h2>Skal se (Watchlist) 🍿</h2>
-            <ul id="watchlistList" style="list-style-type: none; padding: 0;">
-                </ul>
+            
+            <form id="watchlistForm" class="mini-form">
+                <input type="text" id="watchTitle" placeholder="Filmtittel" required>
+                <textarea id="watchComment" rows="2" placeholder="Hvorfor vil du se den? (Valgfritt)"></textarea>
+                <button type="submit">Legg til i Skal se</button>
+                <div id="watchStatusMsg" class="status-message" aria-live="polite"></div>
+            </form>
+
+            <hr>
+            <ul id="watchlistList" style="list-style-type: none; padding: 0;"></ul>
         </section>
 
-        <hr>
 
-        <section>
+        <section class="column">
             <h2>Ferdig sett ⭐</h2>
-            <button id="shareBtn" style="margin-bottom: 15px;">Del listene mine 📤</button>
-            <ul id="moviesList" style="list-style-type: none; padding: 0;">
-                </ul>
+            
+            <form id="watchedForm" class="mini-form">
+                <input type="text" id="seenTitle" placeholder="Filmtittel" required>
+                <input type="number" id="seenRating" min="1" max="10" placeholder="Stjerner (1-10)" required>
+                <textarea id="seenComment" rows="2" placeholder="Hva syntes du? (Valgfritt)"></textarea>
+                <button type="submit">Legg til som Sett</button>
+                <div id="seenStatusMsg" class="status-message" aria-live="polite"></div>
+            </form>
+
+            <hr>
+            <button id="shareBtn" style="width: 100%; margin-bottom: 15px;">Del listene mine 📤</button>
+            <ul id="moviesList" style="list-style-type: none; padding: 0;"></ul>
         </section>
+
     </main>
 
     <script type="module" src="movies.mjs"></script>

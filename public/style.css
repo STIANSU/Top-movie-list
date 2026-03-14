@@ -11,6 +11,7 @@ body {
     line-height: 1.6;
 }
 
+/* Standard main for sider med én kolonne */
 main {
     max-width: 800px;
     margin: 0 auto;
@@ -32,6 +33,34 @@ hr {
     height: 1px;
     background-color: #334155;
     margin: 40px 0;
+}
+
+/* =========================================
+   SPLIT LAYOUT (Kanban-stil for filmer)
+   ========================================= */
+main.split-layout {
+    max-width: 1100px; /* Gjort bredere for å få plass til to kolonner */
+    margin: 0 auto;
+    padding: 30px 20px;
+    display: flex;
+    gap: 30px; /* Mellomrom mellom kolonnene */
+    align-items: flex-start;
+}
+
+.column {
+    flex: 1; /* Begge kolonnene tar nøyaktig 50% av plassen */
+    background-color: #1e293b; /* En litt lysere boks rundt hver kolonne */
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    margin-bottom: 20px;
+}
+
+/* Responsivt: Stabler kolonnene oppå hverandre på små skjermer (mobil) */
+@media (max-width: 768px) {
+    main.split-layout {
+        flex-direction: column;
+    }
 }
 
 /* =========================================
@@ -113,7 +142,6 @@ select {
     cursor: pointer;
 }
 
-
 input:focus,
 textarea:focus,
 select:focus,
@@ -121,6 +149,16 @@ button:focus {
     outline: 3px solid #a855f7;
     outline-offset: 2px;
     border-color: #a855f7;
+}
+
+/* Gjør de nye mini-skjemaene i kolonnene kompakte og fine */
+.mini-form input,
+.mini-form textarea {
+    margin-bottom: 12px;
+}
+
+.mini-form button {
+    width: 100%;
 }
 
 /* =========================================
@@ -152,7 +190,6 @@ button:hover {
     background-color: #475569;
 }
 
-
 .mark-seen-btn {
     background-color: #10b981 !important;
     margin-top: 15px;
@@ -167,7 +204,7 @@ button:hover {
    ========================================= */
 #moviesList li,
 #watchlistList li {
-    background-color: #1e293b;
+    background-color: #1e293b; /* Samme farge som boksene for et renere utseende */
     border: 1px solid #334155;
     border-radius: 12px;
     padding: 20px;
@@ -205,6 +242,16 @@ button:hover {
     margin: 0;
     color: #94a3b8;
     font-style: italic;
+}
+
+/* =========================================
+   STATUS MESSAGES
+   ========================================= */
+.status-message {
+    margin-top: 15px;
+    font-weight: 600;
+    color: #c084fc;
+    min-height: 24px;
 }
 
 /* =========================================

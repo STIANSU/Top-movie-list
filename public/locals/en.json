@@ -1,4 +1,36 @@
 {
-  "error_login": "Wrong e-mail or password",
-  "error_network": "Couldn´t connect to server"
+  "error_login": "Wrong e-mail or password.",
+  "error_network": "Couldn't connect to server.",
+  "msg_logging_in": "Logging in...",
+  "success_login": "Welcome back",
+  "msg_loading_movies": "Loading your movies...",
+  "msg_creating": "Creating user...",
+  "success_register": "Success! User created.",
+  "error_register": "Could not create user.",
+  "msg_deleting": "Deleting user...",
+  "success_delete": "User deleted.",
+  "error_delete": "Could not delete user.",
+  
+  "msg_saving": "Saving...",
+  "success_movie_added": "Added! 🍿",
+  "error_movie_save": "Could not save movie.",
+  "error_server": "Server error.",
+  "msg_no_comment": "No comment",
+  
+  "msg_star_prompt": "How many stars do you give the movie (1-10)? ⭐",
+  "error_star_invalid": "You must enter a number between 1 and 10!",
+  
+  "ui_app_title": "My Movies 🎬",
+  "ui_logout": "Log out",
+  "ui_watchlist_title": "Watchlist 🍿",
+  "ui_placeholder_title": "Movie title",
+  "ui_placeholder_comment_watch": "Why do you want to see it? (Optional)",
+  "ui_btn_add_watchlist": "Add to Watchlist",
+  
+  "ui_watched_title": "Watched ⭐",
+  "ui_placeholder_rating": "Stars (1-10)",
+  "ui_placeholder_comment_seen": "What did you think? (Optional)",
+  "ui_btn_add_watched": "Add as Watched",
+  "ui_btn_share": "Share my lists 📤",
+  "ui_btn_mark_seen": "✔️ I have seen this now!"
 }

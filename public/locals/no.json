@@ -1,4 +1,36 @@
 {
-  "error_login": "Feil e-post eller passord",
-  "error_network": "Kunne ikke koble til serveren"
+  "error_login": "Feil e-post eller passord.",
+  "error_network": "Kunne ikke koble til serveren.",
+  "msg_logging_in": "Logger inn...",
+  "success_login": "Velkommen tilbake",
+  "msg_loading_movies": "Laster inn filmene dine...",
+  "msg_creating": "Oppretter bruker...",
+  "success_register": "Suksess! Bruker opprettet.",
+  "error_register": "Kunne ikke opprette bruker.",
+  "msg_deleting": "Sletter bruker...",
+  "success_delete": "Bruker slettet.",
+  "error_delete": "Kunne ikke slette bruker.",
+  
+  "msg_saving": "Lagrer...",
+  "success_movie_added": "Lagt til! 🍿",
+  "error_movie_save": "Kunne ikke lagre filmen.",
+  "error_server": "Serverfeil.",
+  "msg_no_comment": "Ingen kommentar",
+  
+  "msg_star_prompt": "Hvor mange stjerner gir du filmen (1-10)? ⭐",
+  "error_star_invalid": "Du må skrive et tall mellom 1 og 10!",
+  
+  "ui_app_title": "Mine filmer 🎬",
+  "ui_logout": "Logg ut",
+  "ui_watchlist_title": "Skal se (Watchlist) 🍿",
+  "ui_placeholder_title": "Filmtittel",
+  "ui_placeholder_comment_watch": "Hvorfor vil du se den? (Valgfritt)",
+  "ui_btn_add_watchlist": "Legg til i Skal se",
+  
+  "ui_watched_title": "Ferdig sett ⭐",
+  "ui_placeholder_rating": "Stjerner (1-10)",
+  "ui_placeholder_comment_seen": "Hva syntes du? (Valgfritt)",
+  "ui_btn_add_watched": "Legg til som Sett",
+  "ui_btn_share": "Del listene mine 📤",
+  "ui_btn_mark_seen": "✔️ Har sett denne nå!"
 }

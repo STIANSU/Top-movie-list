@@ -5,7 +5,7 @@ export class userform extends HTMLElement {
         super();
     }
 
-async connectedCallback() {
+    async connectedCallback() {
         try {
             const response = await fetch("userform.html");
             if (!response.ok) {
@@ -24,18 +24,21 @@ async connectedCallback() {
         const regForm = this.querySelector("#registerForm");
         const delForm = this.querySelector("#deleteForm");
         const loginForm = this.querySelector("#loginForm");
+
         if (regForm) {
             regForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
+                this.showStatus("Oppretter bruker...", "registerStatus");
+                
                 const user = {
                     email: regForm.querySelector("#email").value,
                     password: regForm.querySelector("#password").value
                 };
                 const response = await createUser(user);
                 if (response && response.user && response.user.id) {
-                    this.showStatus(`Suksess! Bruker opprettet.`);
+                    this.showStatus(`Suksess! Bruker opprettet.`, "registerStatus");
                 } else {
-                    this.showStatus("Kunne ikke opprette bruker.");
+                    this.showStatus("Kunne ikke opprette bruker.", "registerStatus");
                 }
             });
         }
@@ -43,15 +46,19 @@ async connectedCallback() {
         if (delForm) {
             delForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
+                this.showStatus("Sletter bruker...", "deleteStatus");
+                
                 const id = delForm.querySelector("#deleteId").value;
                 const response = await deleteUser(id);
-                this.showStatus(response.message || response.error);
+                this.showStatus(response.message || response.error, "deleteStatus");
             });
         }
 
         if (loginForm) {
             loginForm.addEventListener("submit", async (e) => {
                 e.preventDefault();
+                this.showStatus("Logger inn...", "loginStatus");
+                
                 const credentials = {
                     email: loginForm.querySelector("#loginEmail").value,
                     password: loginForm.querySelector("#loginPassword").value
@@ -62,25 +69,31 @@ async connectedCallback() {
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(credentials)
                     });
+
                     const data = await response.json();
+                    
                     if (response.ok) {
                         localStorage.setItem("loggedInUser", JSON.stringify(data.user));
-                        this.showStatus(`Velkommen tilbake, ${data.user.email}! Laster inn filmene dine...`);
+                        this.showStatus(`Velkommen tilbake, ${data.user.email}! Laster inn filmene dine...`, "loginStatus");
+                        
                         setTimeout(() => {
                             window.location.href = "/movies.html"; 
                         }, 1500);
+
                     } else {
-                        this.showStatus(data.error || "Feil ved innlogging");
+                        this.showStatus(data.error || "Feil ved innlogging", "loginStatus");
                     }
+
                 } catch (err) {
-                    this.showStatus("Kunne ikke koble til serveren.");
+                    this.showStatus("Kunne ikke koble til serveren.", "loginStatus");
                 }
             });
         }
     }
 
-    showStatus(msg) {
-        const statusEl = this.querySelector("#statusMessage");
+    showStatus(msg, targetId) {
+        this.querySelectorAll(".status-message").forEach(el => el.innerText = "");
+        const statusEl = this.querySelector(`#${targetId}`);
         if (statusEl) statusEl.innerText = msg;
     }
 }
