@@ -5,17 +5,11 @@ export class userform extends HTMLElement {
         super();
     }
 
-    async connectedCallback() {
+async connectedCallback() {
         try {
             const response = await fetch("userform.html");
-            if (response.ok) {
-                localStorage.setItem("loggedInUser", JSON.stringify(data.user));
-                this.showStatus(`Velkommen tilbake, ${data.user.email}! Laster inn filmene dine...`);                
-                setTimeout(() => {
-                window.location.href = "/movies.html"; 
-                }, 1500);
-            } else {
-                this.showStatus(data.error || "Feil ved innlogging");
+            if (!response.ok) {
+                throw new Error(`Fant ikke userform.html (Status: ${response.status})`);
             }
             const html = await response.text();
             this.innerHTML = html;
@@ -68,11 +62,13 @@ export class userform extends HTMLElement {
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(credentials)
                     });
-
                     const data = await response.json();
                     if (response.ok) {
                         localStorage.setItem("loggedInUser", JSON.stringify(data.user));
-                        this.showStatus(`Velkommen tilbake, ${data.user.email}!`);
+                        this.showStatus(`Velkommen tilbake, ${data.user.email}! Laster inn filmene dine...`);
+                        setTimeout(() => {
+                            window.location.href = "/movies.html"; 
+                        }, 1500);
                     } else {
                         this.showStatus(data.error || "Feil ved innlogging");
                     }
