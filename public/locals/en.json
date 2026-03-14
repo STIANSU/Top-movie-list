@@ -1,0 +1,4 @@
+{
+  "error_login": "Wrong e-mail or password",
+  "error_network": "Couldn´t connect to server"
+}
