@@ -26,3 +26,30 @@
     font-size: 0.9em;
     color: #777;
 }
+
+
+/* =========================================
+   Styling for Userform.html
+   ========================================= */
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.checkbox-group {
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+input:focus, button:focus {
+    outline: 3px solid #ffcc00;
+    outline-offset: 2px;
+}
