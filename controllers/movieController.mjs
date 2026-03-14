@@ -28,16 +28,25 @@ export async function getMoviesByUser(userId) {
     }
 }
 
-// NY FUNKSJON: For å flytte filmen til "Sett" og gi stjerner
-export async function markAsWatched(movieId, rating) {
+export async function markAsWatched(movieId, rating, newComment) {
     const query = `
         UPDATE movies 
-        SET status = 'watched', rating = $1 
-        WHERE id = $2 
+        SET status = 'watched', rating = $1, comment = $2
+        WHERE id = $3 
         RETURNING *;
     `;
     try {
-        const result = await pool.query(query, [rating, movieId]);
+        const result = await pool.query(query, [rating, newComment, movieId]);
+        return result.rows[0];
+    } catch (error) {
+        throw error;
+    }
+}
+
+export async function deleteMovie(movieId) {
+    const query = `DELETE FROM movies WHERE id = $1 RETURNING *;`;
+    try {
+        const result = await pool.query(query, [movieId]);
         return result.rows[0];
     } catch (error) {
         throw error;

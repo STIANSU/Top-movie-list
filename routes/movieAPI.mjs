@@ -1,5 +1,5 @@
 import express from "express";
-import { addMovie, getMoviesByUser, markAsWatched } from "../controllers/movieController.mjs";
+import { addMovie, getMoviesByUser, markAsWatched, deleteMovie } from "../controllers/movieController.mjs";
 
 const movieRouter = express.Router();
 
@@ -14,10 +14,7 @@ movieRouter.get("/:userId", async (req, res) => {
 
 movieRouter.post("/", async (req, res) => {
     const { userId, title, rating, comment, status } = req.body;
-
-    if (!userId || !title) {
-        return res.status(400).json({ error: "Mangler info" });
-    }
+    if (!userId || !title) return res.status(400).json({ error: "Mangler info" });
 
     try {
         const newMovie = await addMovie(userId, title, rating, comment, status);
@@ -29,13 +26,23 @@ movieRouter.post("/", async (req, res) => {
 
 movieRouter.patch("/:movieId/watched", async (req, res) => {
     const { movieId } = req.params;
-    const { rating } = req.body;
+    const { rating, comment } = req.body; 
 
     try {
-        const updatedMovie = await markAsWatched(movieId, rating);
+        const updatedMovie = await markAsWatched(movieId, rating, comment);
         res.status(200).json(updatedMovie);
     } catch (error) {
         res.status(500).json({ error: "Kunne ikke oppdatere filmen" });
+    }
+});
+
+movieRouter.delete("/:movieId", async (req, res) => {
+    const { movieId } = req.params;
+    try {
+        await deleteMovie(movieId);
+        res.status(200).json({ message: "Film slettet" });
+    } catch (error) {
+        res.status(500).json({ error: "Kunne ikke slette filmen" });
     }
 });
 
