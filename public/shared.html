@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FilmToppen - Delt filmliste</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Delt filmliste 🎬</h1>
+        <p id="welcomeMessage">Laster inn liste...</p>
+        <button onclick="window.location.href='/'">Lag din egen liste</button>
+    </header>
+
+    <main class="split-layout">
+        
+        <section class="column">
+            <h2>Skal se (Watchlist) 🍿</h2>
+            <hr>
+            <ul id="watchlistList" style="list-style-type: none; padding: 0;"></ul>
+        </section>
+
+        <section class="column">
+            <h2>Ferdig sett ⭐</h2>
+            <hr>
+            <ul id="moviesList" style="list-style-type: none; padding: 0;"></ul>
+        </section>
+
+    </main>
+
+    <script type="module" src="shared.mjs"></script>
+</body>
+</html>

@@ -157,10 +157,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    if (shareBtn) {
+if (shareBtn) {
         shareBtn.addEventListener("click", () => {
             const shareText = `Sjekk ut filmlisten min på FilmToppen!`;
-            const shareUrl = window.location.href; 
+            const shareUrl = `${window.location.origin}/shared.html?user=${user.id}`; 
             if (navigator.share) {
                 navigator.share({ title: 'Min Filmliste', text: shareText, url: shareUrl }).catch(console.error);
             } else {
