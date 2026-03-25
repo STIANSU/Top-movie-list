@@ -21,10 +21,37 @@ export class userform extends HTMLElement {
     }
 
     setupEventListeners() {
+        const guestBtn = this.querySelector("#guestBtn");
         const regForm = this.querySelector("#registerForm");
         const delForm = this.querySelector("#deleteForm");
         const loginForm = this.querySelector("#loginForm");
 
+
+        if (guestBtn) {
+            guestBtn.addEventListener("click", async () => {
+                this.showStatus("Oppretter gjestekonto...", "loginStatus");
+                
+                const randomNum = Math.floor(Math.random() * 1000000);
+                const guestUser = {
+                    email: `gjest_${randomNum}@filmtoppen.no`,
+                    password: `GjestPass${randomNum}`
+                };
+
+                const response = await createUser(guestUser);
+
+                if (response && response.user && response.user.id) {
+                    localStorage.setItem("loggedInUser", JSON.stringify(response.user));
+                    this.showStatus("Gjestekonto opprettet! Tar deg til listene...", "loginStatus");
+                    
+                    setTimeout(() => {
+                        window.location.href = "/movies.html"; 
+                    }, 1500);
+                } else {
+                    this.showStatus("Kunne ikke opprette gjestekonto.", "loginStatus");
+                }
+            });
+        }
+        
         if (regForm) {
             regForm.addEventListener("submit", async (e) => {
                 e.preventDefault();

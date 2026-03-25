@@ -64,24 +64,41 @@ main.split-layout {
 }
 
 /* =========================================
-   HEADER
+   HEADER & MAIN TITLES
    ========================================= */
 header {
     background-color: #1e293b;
     border-bottom: 1px solid #334155;
     padding: 15px 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end; /* Skyver "Logget inn som" og knappen til høyre */
     align-items: center;
+    gap: 20px; /* Lager litt avstand mellom teksten og logg ut-knappen */
     position: sticky;
     top: 0;
     z-index: 10;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
+/* Gjelder "Mine filmer" (og Velkommen hvis den ligger i en header) */
 header h1 {
     margin: 0;
     font-size: 1.5rem;
+    background: linear-gradient(to right, #c084fc, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+    /* Magien for å sentrere den midt i headeren: */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Gjelder "Velkommen til FilmToppen" hvis den bare ligger løst på innloggingssiden */
+body > h1:first-of-type {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 2rem;
     background: linear-gradient(to right, #c084fc, #60a5fa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -91,6 +108,14 @@ header h1 {
     margin: 0;
     font-size: 0.9rem;
     color: #94a3b8;
+}
+
+/* Responsivt tips: På veldig små mobilskjermer kan tittelen og e-posten krasje i hverandre. 
+   Dette skjuler e-posten på mobil, men beholder logg-ut knappen og tittelen. */
+@media (max-width: 600px) {
+    #welcomeMessage {
+        display: none; 
+    }
 }
 
 /* =========================================
