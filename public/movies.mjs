@@ -14,9 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    const welcomeMessage = document.getElementById("welcomeMessage");
+  const welcomeMessage = document.getElementById("welcomeMessage");
+    const userIdDisplay = document.getElementById("userIdDisplay");
+    
     if (welcomeMessage && user && user.email) {
         welcomeMessage.innerText = `Logget inn som: ${user.email}`;
+        if (userIdDisplay) {
+            userIdDisplay.innerText = `(ID: ${user.id})`;
+        }
     }
 
     const watchlistForm = document.getElementById("watchlistForm");

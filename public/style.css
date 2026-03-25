@@ -102,10 +102,21 @@ body > h1:first-of-type {
     -webkit-text-fill-color: transparent;
 }
 
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Mellomrom mellom e-post og ID */
+    color: #94a3b8; /* Den grå ut-fargen */
+    font-size: 0.9rem;
+}
+
 #welcomeMessage {
     margin: 0;
-    font-size: 0.9rem;
-    color: #94a3b8;
+}
+
+.user-id {
+    font-weight: 600;
+    color: #64748b; /* En anelse mørkere grå for å skille den ut */
 }
 
 /* Responsivt tips: På veldig små mobilskjermer kan tittelen og e-posten krasje i hverandre. 
