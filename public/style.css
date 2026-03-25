@@ -1,5 +1,3 @@
-/*NESTEN ALL STYLING ER AI GENERERT SIDEN DET IKKE ER KRAV TIL STYLING I OPPGAVEN BRUKER JEG IKKE SÅ VELDIG MYE TID PÅ DET*/
-
 /* =========================================
    BASE & DARK MODE THEME
    ========================================= */
@@ -222,6 +220,16 @@ button:hover {
 
 .mark-seen-btn:hover {
     background-color: #059669 !important;
+}
+
+.guest-btn {
+    background-color: #475569;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.guest-btn:hover {
+    background-color: #64748b;
 }
 
 /* =========================================
