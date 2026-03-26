@@ -32,5 +32,7 @@
   "ui_placeholder_comment_seen": "What did you think? (Optional)",
   "ui_btn_add_watched": "Add as Watched",
   "ui_btn_share": "Share my lists 📤",
-  "ui_btn_mark_seen": "✔️ I have seen this now!"
+  "ui_btn_mark_seen": "✔️ I have seen this now!",
+  "ui_btn_delete_user": "Delete user (log in to get ID).",
+  "ui_btn_guest": "Continue as guest 🙋"
 }

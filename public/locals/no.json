@@ -32,5 +32,7 @@
   "ui_placeholder_comment_seen": "Hva syntes du? (Valgfritt)",
   "ui_btn_add_watched": "Legg til som Sett",
   "ui_btn_share": "Del listene mine 📤",
-  "ui_btn_mark_seen": "✔️ Har sett denne nå!"
+  "ui_btn_mark_seen": "✔️ Har sett denne nå!",
+  "ui_btn_delete_user": "Slett bruker (logg inn for å hente ID).",
+  "ui_btn_guest": "Fortsett som gjest 🙋"
 }
